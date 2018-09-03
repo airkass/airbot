@@ -13,7 +13,7 @@ var dernierAppel = new Array();
 
 
 // ⇉ CONFIGURATION
-const token = "NDg2MTAyMDc1MjkwMjg4MTI4.Dm6P4Q.vuhq-DHlJdJTU9L1uc0HcH7s2mw" // → TOKEN DU BOT
+const token = process.env.TOKEN; // → TOKEN DU BOT
 var prefix = "/"; // → PREFIX DU BOT
 var cbienvenue = "451731223077978124"; // → ID DU SALON DE BIENVENUE
 var pcolor = "#FFFFFF"; // → COULEUR PRIMAIRE (embed...)
