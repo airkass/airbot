@@ -1,0 +1,281 @@
+//Discord bot by AirKass
+//twitter.com/AirKass
+
+const Discord = require("discord.js");
+const client = new Discord.Client();
+
+//CONFIG
+const token = "NDM1NDgyNDE3NDYyMjQ3NDI0.DbZmHw.o8qNeKmGx7OJ_zil25-wwwYFMFc";
+var prefix = "/";
+var clogs = "435483249184342018";
+var cbienvenue = "435482573628637187";
+var csondage = "435483218335236123"
+var mention = "264434200893980682"; 
+
+
+client.on("ready", () => {;
+var memberCount = client.users.size;
+var servercount = client.guilds.size;
+	var servers = client.guilds.array().map(g => g.name).join(',');
+	console.log("--------------------------------------");
+    console.log('[!]Le bot est connecté! \n----------------STATS----------------- \n[!]Le préfix actuel:  ' + prefix + "\n[!]Nombre de serveurs: " + servercount + "\n[!]Nombre d'utilisateur: " + memberCount);
+    console.log("--------------------------------------");
+    client.channels.get(clogs).send("🚦 Le bot est connecté! 🚦");
+client.user.setStatus('Online')
+client.user.setActivity("🔨 Les Pioches")
+});
+
+//PURGE COMMANDE
+client.on('message', message => {
+
+    let msg = message.content.toUpperCase();
+    let sender = message.author;
+    let cont = message.content.slice(prefix.length).split(" ");
+    let args = cont.slice(1);
+
+    if (msg.startsWith(prefix + 'PURGE')) {
+    
+    var purge_embed = new Discord.RichEmbed()
+    .setColor('#FBFB00')
+    .setAuthor(message.author.username, message.author.avatarURL)
+    .addField("Commande purge utilisé !", "‏‏‏")
+    .setTimestamp()
+    .setFooter("Logs")
+    client.channels.get(clogs).send(purge_embed);
+
+        async function purge() {
+            message.delete();
+
+            if (!message.member.roles.find("name", "💥 Serveur-Admin")) { 
+                message.channel.send(':x: Tu as besoin du role \`💥 Serveur-Admin\` pour faire cette commande :x:');
+                return; 
+            }
+
+            if (isNaN(args[0])) {
+                message.channel.send(':x: Veuillez utiliser un nombre comme argument. :x: \n\nUtilisation: `/purge <nombre>`'); 
+                return;
+            }
+
+            const fetched = await message.channel.fetchMessages({limit: args[0]}); 
+            console.log(fetched.size + ' Les messages ont bien été supprimés...');
+
+            message.channel.bulkDelete(fetched)
+                .catch(error => message.channel.send(`:x: Erreur: ${error}`));
+
+        }
+
+        purge();
+
+    }
+});
+
+//JOIN/MESSAGE PRIVE
+client.on('guildMemberAdd', member => {
+    var wel_embed = new Discord.RichEmbed()
+    .setColor('#FEFEFE')
+    .setAuthor("Bienvenue sur le discord " + member.user.username + ", je te conseil de lire les #regles-📛" , member.user.avatarURL)
+    .setTimestamp()
+    .setFooter("Discord bot by AirKass#9247")
+    member.createDM().then(channel => {
+        return channel.send(wel_embed);  
+    }).catch(console.error)
+
+//NOUVEAU MEMBRE    
+    var cwel_embed = new Discord.RichEmbed()
+    .setColor('#00B212')
+    .setAuthor(member.user.username + " viens de rejoindre le discord !", member.user.avatarURL)
+    .setTimestamp()
+    .setFooter("Nouveau membre")
+    member.guild.channels.get(cbienvenue).send(cwel_embed);
+
+//AUTOROLE    
+    let role = member.guild.roles.find("name", "👽 Visiteur")
+    member.addRole(role)
+
+});
+
+//MEMBRE PARTI
+client.on('guildMemberRemove', member => {
+    var cbye_embed = new Discord.RichEmbed()
+    .setColor('#E24343')
+    .setAuthor(member.user.username + " est parti du discord !", member.user.avatarURL)
+    .setTimestamp()
+    .setFooter("Membre parti")
+    member.guild.channels.get(cbienvenue).send(cbye_embed);
+
+})
+
+//MODE
+
+
+//AUTO DIALOGUE
+client.on('message', message => {
+  if (message.content === ("bonjour")){
+    message.reply('Bonsoir ( ͡° ͜ʖ ͡°)');
+ } else if (message.content === ("salut")){
+    message.reply("Yo !")
+ } else if (message.content === ("Yo")){
+    message.reply("Yo, ça roule ?")
+ } else if (message.content === ("Yop")){
+    message.reply("Yo, ça roule ?")
+ } else if (message.content === ("yo")){
+    message.reply("Yo, ça roule ?")
+ } else if (message.content === ("Salut")){
+    message.reply("Hey !")
+ } else if (message.content === ("Bonjour")){
+    message.reply('Bonsoir ( ͡° ͜ʖ ͡°)');
+ } else if (message.content === ("ça va")){
+    message.reply("Ouai et toi ?")
+ } else if (message.content === ("ça va ?")){
+    message.reply("Ouai et toi ?")
+ } else if (message.content === ("sa va")){
+    message.reply("Ouai et toi ?")
+ } else if (message.content === ("sa va ?")){
+    message.reply("Ouai et toi ?")
+ } else if (message.content === ("Comment tu vas ?")){
+    message.reply("je vais bien.. mais bon je suis un bot !")
+ } else if (message.content === ("comment tu vas ?")){
+    message.reply("je vais bien.. mais bon je suis un bot !")
+ } else if (message.content === ("Comment tu vas")){
+    message.reply("je vais bien.. mais bon je suis un bot !")
+ } else if (message.content === ("comment tu vas")){
+    message.reply("je vais bien.. mais bon je suis un bot !")
+
+//COMMANDE ROLES
+} else if (message.content === prefix + "pc"){
+    message.member.addRoles(message.guild.roles.find('name', '🖥️ PC'))
+      .then(console.log)
+      .catch(console.error);
+    var pc_embed = new Discord.RichEmbed()
+      .setColor('#D7101D')
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .addField("Vous avez été ajouté au rôle 🖥️ PC", "‏‏‏")
+      .setTimestamp()
+    message.channel.send(pc_embed)
+} else if (message.content === prefix + "ps4"){
+    message.member.addRoles(message.guild.roles.find('name', '🎮 PS4'))
+      .then(console.log)
+      .catch(console.error);
+    var ps4_embed = new Discord.RichEmbed()
+      .setColor('#1A15AF')
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .addField("Vous avez été ajouté au rôle 🎮 PS4", "‏‏‏")
+      .setTimestamp()
+    message.channel.send(ps4_embed)
+} else if (message.content === prefix + "xbox"){
+    message.member.addRoles(message.guild.roles.find('name', '💚 XBOX'))
+      .then(console.log)
+      .catch(console.error);
+    var xbox_embed = new Discord.RichEmbed()
+      .setColor('#15AF1F')
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .addField("Vous avez été ajouté au rôle 💚 XBOX", "‏‏‏")
+      .setTimestamp()
+    message.channel.send(xbox_embed)
+
+//SERVEUR INFO
+} else if (message.content === prefix + "serveurinfo"){
+message.delete(message.author);
+let sicon = message.guild.iconURL;
+let serverembed = new Discord.RichEmbed()
+  .setAuthor(message.author.username, message.author.avatarURL)
+  .setTitle("Serveur Information")
+  .setColor("#FEFEFE")
+  .setThumbnail(sicon)
+  .setTimestamp()
+  .addField("Nom du Discord: ", message.guild.name)
+  .addField("Créé le: ", message.guild.createdAt)
+  .addField("Vous avez rejoins le: ", message.member.joinedAt)
+  .addField("Membre au total: ", message.guild.memberCount);
+message.channel.send(serverembed);
+
+//SONDAGE
+}   if (message.content.startsWith(prefix + "sondage")) {
+        message.delete(message.author);
+        var sondl_embed = new Discord.RichEmbed()
+            .setColor('#00ADEC')
+            .setAuthor(message.author.username, message.author.avatarURL)
+            .addField("Commande sondage utilisé !", "‏‏‏")
+            .setTimestamp()
+            .setFooter("Logs")
+        client.channels.get(clogs).send(sondl_embed);
+        let modRole = message.guild.roles.find("name", "💥 Serveur-Admin");
+        if(!message.member.roles.has(modRole)) {
+            let args = message.content.split(" ").slice(1);
+            let thingToEcho = args.join(" ")
+            var embed = new Discord.RichEmbed()
+                .addField(thingToEcho, "‏")
+                .setColor("#00ADEC")
+                .setTimestamp()
+        client.channels.get(csondage).send(embed)
+        .then(function (message) {
+            message.react("✅")
+            message.react("❌")
+        }).catch(function() {
+        });
+        }else{
+            return message.reply(":x: Tu n'as pas la permission.")
+    }
+
+//SOCIAL EMBED
+} else if (message.content === prefix + "site"){
+    message.delete(message.author);
+        var site_embed = new Discord.RichEmbed()
+            .setColor('#fbb400')
+            .setTitle("**oxsay.cf**")
+            .setURL("https://oxsay.cf")
+            .setAuthor("Site", "https://airkass.s-ul.eu/I6f4egzC")
+            .setThumbnail("https://airkass.s-ul.eu/I6f4egzC")
+        message.channel.send(site_embed);
+
+} else if (message.content === prefix + "discord"){
+    message.delete(message.author);
+        var discord_embed = new Discord.RichEmbed()
+            .setColor('#7289da')
+            .setTitle("**oxsay.cf/discord.html**")
+            .setURL("https://oxsay.cf/discord.html")
+            .setAuthor("Discord", "https://airkass.s-ul.eu/KUDtGR93")
+            .setThumbnail("https://airkass.s-ul.eu/KUDtGR93")
+        message.channel.send(discord_embed);
+
+} else if (message.content === prefix + "twitter"){
+    message.delete(message.author);
+        var twitter_embed = new Discord.RichEmbed()
+            .setColor('#00CBFE')
+            .setTitle("**@LesPioches**")
+            .setURL("https://twitter.com/LesPioches")
+            .setAuthor("Twitter", "http://pluspng.com/img-png/raunr7ow6f45t-oqr-afdc4tosutyax0vqeee4yggkl52toe9wgy6kbtglahiexgzvq-w300-300.png")
+            .setThumbnail("http://pluspng.com/img-png/raunr7ow6f45t-oqr-afdc4tosutyax0vqeee4yggkl52toe9wgy6kbtglahiexgzvq-w300-300.png")
+        message.channel.send(twitter_embed);
+
+//REGLES
+} else if (message.content === prefix + "regles"){
+    message.delete(message.author);
+        var regles_embed = new Discord.RichEmbed()
+            .setColor('#fbb400')
+            .addField("__Regles__‎", "‎‎‎")
+            .addField("→ La politesse est de mise, le respect également, veillez à rester courtois et polis envers tout le monde.", "‎‎‎")
+            .addField("→ TOUT propos raciste, haineux, diffamatoire et tout type de message (incluant le troll) incitant à la haine est INTERDIT. Vous êtes l'unique responsable de vos messages.", "‎‎‎")
+            .addField("→ Tout message à caractère pornographique, contenu choquant, haineux […] est interdit.", "‎‎‎")
+            .addField("→ Le Discord  est un serveur vocal francophone, seul le français doit être utilisé.", "‎‎‎")
+            .addField("→ Toutes publicités sont interdites sans l'autorisation. Aucun lien de serveur Discord doit apparaître.", "‎‎‎")
+            .addField("→ Le recrutement de quoique soit pour une autre association ou organisme est interdit. ", "‎‎‎")
+            .addField("→ La vente et l'achat de comptes, services ou tout autres biens sont interdits. ", "‎‎‎")
+            .setFooter("Tout manquements aux règles sera sanctionné.")
+        message.channel.send(regles_embed);
+    
+//DEV
+} else if (message.content === prefix + "dev"){
+message.delete(message.author);
+    var dev = new Discord.RichEmbed()
+        .setColor('#FEFEFE')
+        .setAuthor("AirKass#9247", "https://airkass.s-ul.eu/7f4YPAXp")
+        .setTitle("**Développeur du bot**")
+        .setThumbnail("https://airkass.s-ul.eu/7f4YPAXp")
+        .setFooter("@AirKass", "http://www.playstoregratis.club/wp-content/uploads/2017/09/Twitter.png")
+        message.channel.send(dev);
+}
+
+});
+
+client.login(token)
