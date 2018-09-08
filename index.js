@@ -86,7 +86,7 @@ client.on('guildMemberAdd', member => {
 
 // ⇉ AUTO ROLE
 
-    let role = member.guild.roles.find("name", "👌 Poto")
+    let role = member.guild.roles.find("name", "👽 Visiteur")
     member.addRole(role)
 
 // ⇉ NOUVEAU MEMBRE SALON BIENVENUE
