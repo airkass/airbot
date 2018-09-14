@@ -71,18 +71,13 @@ client.on('guildMemberAdd', member => {
     var wel_embed = new Discord.RichEmbed()
      .setColor(pcolor)
      .setAuthor("Bienvenue sur le discord " + member.user.username + " " , member.user.avatarURL)
-    var wel2_embed = new Discord.RichEmbed()
-     .setColor(pcolor)
-     .setAuthor("Petite aide, si tu veux des roles , regarde dans le salon #🔗-cmd")
+     .setThumbnail("https://airkass.tk/assets/logo.gif")
+     .setDescription("Petite aide, si tu veux des roles , regarde dans le salon #🔗-cmd")
      .setTimestamp()
      .setFooter("Discord bot by AirKass#9247 - https://airkass.tk")
     member.createDM().then(channel => {
         return channel.send(wel_embed);  
     }).catch(console.error)
-    member.createDM().then(channel => {
-        return channel.send(wel2_embed);  
-    }).catch(console.error)
-
 
 // ⇉ AUTO ROLE
 
