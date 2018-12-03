@@ -72,7 +72,7 @@ client.on('guildMemberAdd', member => {
      .setColor(pcolor)
      .setAuthor("Bienvenue sur le discord " + member.user.username + " " , member.user.avatarURL)
      .setThumbnail("https://airkass.tk/assets/logo.gif")
-     .setDescription("Petite aide, si tu veux des roles , regarde dans le salon #🔗-cmd")
+     .setDescription("Petite aide, si tu veux des roles , regarde dans le salon #⚫𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗘")
      .setTimestamp()
      .setFooter("Discord bot by AirKass#9247 - https://airkass.tk")
     member.createDM().then(channel => {
