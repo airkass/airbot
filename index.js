@@ -19,7 +19,7 @@ var cbienvenue = "486113472111968256"; // → ID DU SALON DE BIENVENUE
 var pcolor = "#FFFFFF"; // → COULEUR PRIMAIRE (embed...)
 var scolor = "#00B212"; // → COULEUR PRINCIPALEMENT VERT POUR TOUS LES SUCCES !
 var ccolor = "#E24343"; // → COULEUR PRINCIPALEMNT ROUGE POUR TOUS LES "CANCEL" !
-var ProfilGame = "AirKass#9247 - https://airkass.tk"; // → Le bot joue à ......
+var ProfilGame = "AirKass#0001 - https://airkass.tk"; // → Le bot joue à ......
 var ProfilStream = "https://twitch.tv/airkass"; // → Le bot stream du ......
 
 // ⇉ CONNECTION
@@ -72,9 +72,9 @@ client.on('guildMemberAdd', member => {
      .setColor(pcolor)
      .setAuthor("Bienvenue sur le discord " + member.user.username + " " , member.user.avatarURL)
      .setThumbnail("https://airkass.tk/assets/logo.gif")
-     .setDescription("Petite aide, si tu veux des roles , regarde dans le salon #⚫𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗘")
+     .setDescription("Petite aide, si tu veux des roles je te laisse allez voir dans `#⚫𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗘`.")
      .setTimestamp()
-     .setFooter("Discord bot by AirKass#9247 - https://airkass.tk")
+     .setFooter("Discord bot by AirKass#0001 - https://airkass.tk")
     member.createDM().then(channel => {
         return channel.send(wel_embed);  
     }).catch(console.error)
