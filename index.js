@@ -81,7 +81,7 @@ client.on('guildMemberAdd', member => {
 
 // ⇉ AUTO ROLE
 
-    let role = member.guild.roles.find("name", "👽 Visiteur")
+    let role = member.guild.roles.find("name", "❌ Non confirmé")
     member.addRole(role)
 
 // ⇉ NOUVEAU MEMBRE SALON BIENVENUE
@@ -145,6 +145,45 @@ client.on("message", (message) => {
 
 });
 
+// ⇉ MOT DE PASSE
+
+var mdp = "air03"
+
+client.on("message", (message) => {
+    if (message.channel.id === "536960546520432640") {
+        if (message.content !== mdp) {
+            var embed = new Discord.RichEmbed()
+                .setColor('#E24343')
+                .addField(":x: Mauvais mot de passe :x:", "‏")
+                .setTimestamp()
+                .setFooter("Erreur")
+            message.author.createDM().then(channel => {
+                return channel.send(embed);  
+                }).catch(console.error)
+        }
+    }
+    if (message.channel.id === "536960546520432640") {
+        if (message.content !== "") {
+            message.delete();
+        }
+    }
+    if (message.channel.id === "536960546520432640") {  
+        if (message.content === mdp) {
+            var mdpembed = new Discord.RichEmbed()
+                .setColor('#00B212')
+                .addField(":white_check_mark:  Bon mot de passe, vous êtes accepté sur le serveur ! :white_check_mark: ", "‏")
+                .setTimestamp()
+                .setFooter("Validé")
+            message.author.createDM().then(channel => {
+                return channel.send(mdpembed);  
+                }).catch(console.error)
+            message.member.removeRole(message.guild.roles.find('name', '❌ Non confirmé'));
+            message.member.addRole(message.guild.roles.find('name', '☁️ Membre'));
+
+
+        }
+    }
+})
 
 // ⇉ STATS USER 
 
