@@ -65,6 +65,27 @@ client.user.setStatus('Online')
 client.user.setGame(ProfilGame, ProfilStream);
 });
 
+// ⇉ STATS CHANNEL
+
+var serverStats = {
+    guildID: '485060836927340545',
+    memberCountID: '537328653755744266',
+}
+
+client.on('guildMemberAdd', member => {
+    if (member.guild.id !== serverStats.guildID) return;
+
+    client.channels.get(serverStats.memberCountID).setName(`▪ UTILISATEURS : ${member.guild.members.filter(m => !m.bot).size}`);
+
+});
+
+client.on('guildMemberRemove', member => {
+    if (member.guild.id !== serverStats.guildID) return;
+    client.channels.get(serverStats.memberCountID).setName(`▪ UTILISATEURS : ${member.guild.members.filter(m => !m.bot).size}`);
+    
+});
+
+
 // ⇉ MESSAGE DE BIENVENUE / MESSAGE PRIVE
 client.on('guildMemberAdd', member => {
     console.log("[+] " + member.user.username + " viens d'arriver sur le discord");
