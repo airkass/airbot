@@ -172,7 +172,7 @@ client.on("message", (message) => {
     if (message.channel.id === "536960546520432640") {
         if (message.content !== mdp) {
             var embed = new Discord.RichEmbed()
-                .setColor('#E24343')
+                .setColor(ccolor)
                 .addField(":x: MAUVAIS MOT DE PASSE :x:", "‏")
                 .setTimestamp()
                 .setFooter("ERREUR")
@@ -189,7 +189,7 @@ client.on("message", (message) => {
     if (message.channel.id === "536960546520432640") {  
         if (message.content === mdp) {
             var mdpembed = new Discord.RichEmbed()
-                .setColor('#00B212')
+                .setColor(scolor)
                 .addField(":white_check_mark: BON MOT DE PASSE :white_check_mark: ", "‏")
                 .setTimestamp()
                 .setFooter("VALIDE")
@@ -304,22 +304,22 @@ function random(min, max) {
 
 client.on('message', message => {
     var i_embed = new Discord.RichEmbed()
-    .setColor('#E24343')
+    .setColor(ccolor)
     .addField(":warning: **Ton langage** " + message.author.username + " :warning:", "‏")
     .setTimestamp()
 
     var l_embed = new Discord.RichEmbed()
-    .setColor('#E24343')
+    .setColor(ccolor)
     .addField(":warning: **Pas de lien** " + message.author.username + " :warning:", "‏")
     .setTimestamp()
 
     var pub_embed = new Discord.RichEmbed()
-    .setColor('#E24343')
+    .setColor(ccolor)
     .addField(":warning: **Pas de pub** " + message.author.username + " :warning:", "‏")
     .setTimestamp()
 
     var link_embed = new Discord.RichEmbed()
-    .setColor('#E24343')
+    .setColor(ccolor)
     .addField(":warning: **Pas de lien ici** " + message.author.username + " :warning:", "‏")
     .setTimestamp()
 
@@ -330,91 +330,96 @@ client.on('message', message => {
             message.channel.send(link_embed)
         }
     }
-
-    if (message.channel.id === "458958284100075521") {
-        if(message.content.toLowerCase().includes('https://')){
-            message.delete(message.author);
-            message.channel.send(link_embed)
-        }
-    }
-
-    if (message.channel.id === "454919398017204224") {
-        if(message.content.toLowerCase().includes('https://')){
-            message.delete(message.author);
-            message.channel.send(link_embed)
-        }
-    }
-
-    if (message.channel.id === "451737018272055299") {
-        if(message.content.toLowerCase().includes('http://')){
-            message.delete(message.author);
-            message.channel.send(link_embed)
-        }
-    }
-
-    if (message.channel.id === "458958284100075521") {
-        if(message.content.toLowerCase().includes('http://')){
-            message.delete(message.author);
-            message.channel.send(link_embed)
-        }
-    }
-
-    if (message.channel.id === "454919398017204224") {
-        if(message.content.toLowerCase().includes('http://')){
-            message.delete(message.author);
-            message.channel.send(link_embed)
-        }
-    }
     
 // ANTI INSULTES
     if(message.content.toLowerCase().includes('pute')){
         message.delete(message.author);
         message.channel.send(i_embed)
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
     }
 
     if(message.content.toLowerCase().includes('connard')){
         message.delete(message.author);
         message.channel.send(i_embed)
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
     }
 
     if(message.content.toLowerCase().includes('fdp')){
         message.delete(message.author);
         message.channel.send(i_embed)
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
     }
 
     if(message.content.toLowerCase().includes('enculé')){
         message.delete(message.author);
         message.channel.send(i_embed)
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
     }
 
     if(message.content.toLowerCase().includes('merde')){
         message.delete(message.author);
         message.channel.send(i_embed)
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
     }
 
     if(message.content.toLowerCase().includes('fils de pute')){
         message.delete(message.author);
         message.channel.send(i_embed)
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
     }
 
     if(message.content.toLowerCase().includes('batard')){
         message.delete(message.author);
         message.channel.send(i_embed)
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
     }
 
     if(message.content.toLowerCase().includes('https://discord.gg/')){
         message.delete(message.author);
         message.channel.send(pub_embed)
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
     }
 
     if(message.content.toLowerCase().includes('https://discord.me/')){
         message.delete(message.author);
         message.channel.send(pub_embed)
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
     }
 
     if(message.content.toLowerCase().includes('https://discord.io/')){
         message.delete(message.author);
         message.channel.send(pub_embed)
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
     }
 
 });
@@ -455,6 +460,19 @@ client.on('message', message => {
     }
 });
 
+
+
+
+client.on("message", (message) => {
+    if (message.content === prefix + "cmd"){
+        message.reply(":x: COMMANDE INVALIDE :x:")
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
+    }
+})
+
 // ⇉ COMMANDE ROLES (PC,XBOX..)
 client.on("message", (message) => {
     if (message.channel.id === "485752708356243456") {
@@ -467,7 +485,7 @@ client.on("message", (message) => {
         if (message.member.roles.find("name", "🖥️ PC")) { 
         message.member.removeRole(message.guild.roles.find('name', '🖥️ PC'));
         var embeddel = new Discord.RichEmbed()
-         .setColor('#E24343')
+         .setColor(ccolor)
          .setAuthor(message.author.username, message.author.avatarURL)
          .addField("Vous avez été retiré du role 🖥️ PC", "‏‏‏")
          .setTimestamp()
@@ -479,7 +497,7 @@ client.on("message", (message) => {
           .then(console.log)
           .catch(console.error);
         var embedadd = new Discord.RichEmbed()
-          .setColor('#00B212')
+          .setColor(scolor)
           .setAuthor(message.author.username, message.author.avatarURL)
           .addField("Vous avez été ajouté au rôle 🖥️ PC", "‏‏‏")
           .setTimestamp()
@@ -493,7 +511,7 @@ client.on("message", (message) => {
         if (message.member.roles.find("name", "🎮 PS4")) { 
         message.member.removeRole(message.guild.roles.find('name', '🎮 PS4'));
         var embeddel = new Discord.RichEmbed()
-         .setColor('#E24343')
+         .setColor(ccolor)
          .setAuthor(message.author.username, message.author.avatarURL)
          .addField("Vous avez été retiré du role 🎮 PS4", "‏‏‏")
          .setTimestamp()
@@ -505,7 +523,7 @@ client.on("message", (message) => {
           .then(console.log)
           .catch(console.error);
         var embedadd = new Discord.RichEmbed()
-          .setColor('#00B212')
+          .setColor(scolor)
           .setAuthor(message.author.username, message.author.avatarURL)
           .addField("Vous avez été ajouté au rôle 🎮 PS4", "‏‏‏")
           .setTimestamp()
@@ -519,7 +537,7 @@ client.on("message", (message) => {
         if (message.member.roles.find("name", "💚 XBOX")) { 
         message.member.removeRole(message.guild.roles.find('name', '💚 XBOX'));
         var embeddel = new Discord.RichEmbed()
-         .setColor('#E24343')
+         .setColor(ccolor)
          .setAuthor(message.author.username, message.author.avatarURL)
          .addField("Vous avez été retiré du role 💚 XBOX", "‏‏‏")
          .setTimestamp()
@@ -531,7 +549,7 @@ client.on("message", (message) => {
           .then(console.log)
           .catch(console.error);
         var embedadd = new Discord.RichEmbed()
-          .setColor('#00B212')
+          .setColor(scolor)
           .setAuthor(message.author.username, message.author.avatarURL)
           .addField("Vous avez été ajouté au rôle 💚 XBOX", "‏‏‏")
           .setTimestamp()
@@ -545,7 +563,7 @@ client.on("message", (message) => {
         if (message.member.roles.find("name", "🕹️ Switch")) { 
         message.member.removeRole(message.guild.roles.find('name', '🕹️ Switch'));
         var embeddel = new Discord.RichEmbed()
-         .setColor('#E24343')
+         .setColor(ccolor)
          .setAuthor(message.author.username, message.author.avatarURL)
          .addField("Vous avez été retiré du role 🕹️ Switch", "‏‏‏")
          .setTimestamp()
@@ -557,7 +575,7 @@ client.on("message", (message) => {
           .then(console.log)
           .catch(console.error);
         var embedadd = new Discord.RichEmbed()
-          .setColor('#00B212')
+          .setColor(scolor)
           .setAuthor(message.author.username, message.author.avatarURL)
           .addField("Vous avez été ajouté au rôle 🕹️ Switch", "‏‏‏")
           .setTimestamp()
@@ -572,12 +590,4 @@ client.on("message", (message) => {
 });
 
 client.login(token)
-
-// _                      _      _  __               _  _    ___ ___  _  _ ______ 
-//| |               /\   (_)    | |/ /             _| || |_ / _ \__ \| || |____  |
-//| |__  _   _     /  \   _ _ __| ' / __ _ ___ ___|_  __  _| (_) | ) | || |_  / / 
-//| '_ \| | | |   / /\ \ | | '__|  < / _` / __/ __|_| || |_ \__, |/ /|__   _|/ /  
-//| |_) | |_| |  / ____ \| | |  | . \ (_| \__ \__ \_  __  _|  / // /_   | | / /   
-//|_.__/ \__, | /_/    \_\_|_|  |_|\_\__,_|___/___/ |_||_|   /_/|____|  |_|/_/    
-//        __/ |                                                                   
-//       |___/    
+  
