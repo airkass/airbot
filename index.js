@@ -7,8 +7,6 @@
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
-var dernierAppel = new Array();
-
 
 // ⇉ CONFIGURATION
 const token = process.env.TOKEN; // → TOKEN DU BOT
