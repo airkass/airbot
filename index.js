@@ -1,11 +1,9 @@
-// _                      _      _  __               _  _    ___ ___  _  _ ______ 
-//| |               /\   (_)    | |/ /             _| || |_ / _ \__ \| || |____  |
-//| |__  _   _     /  \   _ _ __| ' / __ _ ___ ___|_  __  _| (_) | ) | || |_  / / 
-//| '_ \| | | |   / /\ \ | | '__|  < / _` / __/ __|_| || |_ \__, |/ /|__   _|/ /  
-//| |_) | |_| |  / ____ \| | |  | . \ (_| \__ \__ \_  __  _|  / // /_   | | / /   
-//|_.__/ \__, | /_/    \_\_|_|  |_|\_\__,_|___/___/ |_||_|   /_/|____|  |_|/_/    
-//        __/ |                                                                   
-//       |___/    
+//▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+// AirKass#0472            ▬
+// https://airkass.tk      ▬
+//▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+                                                                                   
+                                                                                   
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
@@ -19,7 +17,7 @@ var cbienvenue = "486113472111968256"; // → ID DU SALON DE BIENVENUE
 var pcolor = "#FFFFFF"; // → COULEUR PRIMAIRE (embed...)
 var scolor = "#00B212"; // → COULEUR PRINCIPALEMENT VERT POUR TOUS LES SUCCES !
 var ccolor = "#E24343"; // → COULEUR PRINCIPALEMNT ROUGE POUR TOUS LES "CANCEL" !
-var ProfilGame = "AirKass#0001 - https://airkass.tk"; // → Le bot joue à ......
+var ProfilGame = "AirKass#0472 - https://airkass.tk"; // → Le bot joue à ......
 var ProfilStream = "https://twitch.tv/airkass"; // → Le bot stream du ......
 
 // ⇉ CONNECTION
@@ -95,7 +93,7 @@ client.on('guildMemberAdd', member => {
      .setThumbnail("https://airkass.tk/assets/logo.gif")
      .setDescription("Pour te connecter au discord, je te laisse rentrer le mot de passe dans `#🔒𝗖𝗢𝗡𝗡𝗘𝗖𝗧𝗜𝗢𝗡`.")
      .setTimestamp()
-     .setFooter("Discord bot by AirKass#0001 - https://airkass.tk")
+     .setFooter("Discord bot by AirKass#0472 - https://airkass.tk")
     member.createDM().then(channel => {
         return channel.send(wel_embed);  
     }).catch(console.error)
@@ -175,7 +173,7 @@ client.on("message", (message) => {
         if (message.content !== mdp) {
             var embed = new Discord.RichEmbed()
                 .setColor('#E24343')
-                .addField(":x: Mauvais mot de passe :x:", "‏")
+                .addField(":x: MAUVAIS MOT DE PASSE :x:", "‏")
                 .setTimestamp()
                 .setFooter("Erreur")
             message.author.createDM().then(channel => {
@@ -192,7 +190,7 @@ client.on("message", (message) => {
         if (message.content === mdp) {
             var mdpembed = new Discord.RichEmbed()
                 .setColor('#00B212')
-                .addField(":white_check_mark:  BON MOT DE PASSE, VOUS ÊTES ACCEPTE SUR LE SERVEUR ! :white_check_mark: ", "‏")
+                .addField(":white_check_mark: BON MOT DE PASSE, VOUS ÊTES ACCEPTE SUR LE SERVEUR ! :white_check_mark: ", "‏")
                 .setTimestamp()
                 .setFooter("Validé")
             message.author.createDM().then(channel => {
@@ -573,13 +571,4 @@ client.on("message", (message) => {
 
 });
 
-client.login(token)
-
-// _                      _      _  __               _  _    ___ ___  _  _ ______ 
-//| |               /\   (_)    | |/ /             _| || |_ / _ \__ \| || |____  |
-//| |__  _   _     /  \   _ _ __| ' / __ _ ___ ___|_  __  _| (_) | ) | || |_  / / 
-//| '_ \| | | |   / /\ \ | | '__|  < / _` / __/ __|_| || |_ \__, |/ /|__   _|/ /  
-//| |_) | |_| |  / ____ \| | |  | . \ (_| \__ \__ \_  __  _|  / // /_   | | / /   
-//|_.__/ \__, | /_/    \_\_|_|  |_|\_\__,_|___/___/ |_||_|   /_/|____|  |_|/_/    
-//        __/ |                                                                   
-//       |___/    
+client.login(token) 
