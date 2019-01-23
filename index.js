@@ -175,7 +175,7 @@ client.on("message", (message) => {
                 .setColor('#E24343')
                 .addField(":x: MAUVAIS MOT DE PASSE :x:", "‏")
                 .setTimestamp()
-                .setFooter("Erreur")
+                .setFooter("ERREUR")
             message.author.createDM().then(channel => {
                 return channel.send(embed);  
                 }).catch(console.error)
@@ -190,9 +190,9 @@ client.on("message", (message) => {
         if (message.content === mdp) {
             var mdpembed = new Discord.RichEmbed()
                 .setColor('#00B212')
-                .addField(":white_check_mark: BON MOT DE PASSE, VOUS ÊTES ACCEPTE SUR LE SERVEUR ! :white_check_mark: ", "‏")
+                .addField(":white_check_mark: BON MOT DE PASSE :white_check_mark: ", "‏")
                 .setTimestamp()
-                .setFooter("Validé")
+                .setFooter("VALIDE")
             message.author.createDM().then(channel => {
                 return channel.send(mdpembed);  
                 }).catch(console.error)
@@ -571,4 +571,13 @@ client.on("message", (message) => {
 
 });
 
-client.login(token) 
+client.login(token)
+
+// _                      _      _  __               _  _    ___ ___  _  _ ______ 
+//| |               /\   (_)    | |/ /             _| || |_ / _ \__ \| || |____  |
+//| |__  _   _     /  \   _ _ __| ' / __ _ ___ ___|_  __  _| (_) | ) | || |_  / / 
+//| '_ \| | | |   / /\ \ | | '__|  < / _` / __/ __|_| || |_ \__, |/ /|__   _|/ /  
+//| |_) | |_| |  / ____ \| | |  | . \ (_| \__ \__ \_  __  _|  / // /_   | | / /   
+//|_.__/ \__, | /_/    \_\_|_|  |_|\_\__,_|___/___/ |_||_|   /_/|____|  |_|/_/    
+//        __/ |                                                                   
+//       |___/    
