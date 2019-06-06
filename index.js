@@ -1,6 +1,6 @@
 //▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 // AirKass#0472            ▬
-// https://airkass.tk      ▬
+// https://airkass.fr      ▬
 //▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
                                                                                    
                                                                                    
@@ -9,13 +9,13 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 // ⇉ CONFIGURATION
-const token = process.env.TOKEN; // → TOKEN DU BOT
+const token = "NDg2MTAyMDc1MjkwMjg4MTI4.Dm6WBg.cs5dA-uebZLJQO3v4tbzWg-2NeI"; // → TOKEN DU BOT
 var prefix = "/"; // → PREFIX DU BOT
 var cbienvenue = "486113472111968256"; // → ID DU SALON DE BIENVENUE
 var pcolor = "#FFFFFF"; // → COULEUR PRIMAIRE (embed...)
 var scolor = "#00B212"; // → COULEUR PRINCIPALEMENT VERT POUR TOUS LES SUCCES !
 var ccolor = "#E24343"; // → COULEUR PRINCIPALEMNT ROUGE POUR TOUS LES "CANCEL" !
-var ProfilGame = "AirKass#0472 - https://airkass.tk"; // → Le bot joue à ......
+var ProfilGame = "AirKass#0472 - https://airkass.fr"; // → Le bot joue à ......
 var ProfilStream = "https://twitch.tv/airkass"; // → Le bot stream du ......
 
 // ⇉ CONNECTION
