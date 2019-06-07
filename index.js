@@ -88,7 +88,7 @@ client.on('guildMemberAdd', member => {
     var wel_embed = new Discord.RichEmbed()
      .setColor(pcolor)
      .setAuthor("Bienvenue sur le discord " + member.user.username + " " , member.user.avatarURL)
-     .setThumbnail("https://airkass.tk/assets/logo.gif")
+     .setThumbnail("https://airkass.fr/assets/logo.gif")
      .setDescription("Pour te connecter au discord, je te laisse rentrer le mot de passe dans `#🔒𝗖𝗢𝗡𝗡𝗘𝗖𝗧𝗜𝗢𝗡`.")
      .setTimestamp()
      .setFooter("Discord bot by AirKass#0472 - https://airkass.fr")
