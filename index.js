@@ -171,7 +171,7 @@ client.on("message", (message) => {
         if (message.content !== mdp) {
             var embed = new Discord.RichEmbed()
                 .setColor(ccolor)
-                .addField(":x: MAUVAIS MOT DE PASSE :x:", "‏")
+                .addField(":x: Le mot de passe est incorrecte, veuillez réessayer :x:", "‏")
                 .setTimestamp()
                 .setFooter("ERREUR")
             message.author.createDM().then(channel => {
@@ -188,7 +188,7 @@ client.on("message", (message) => {
         if (message.content === mdp) {
             var mdpembed = new Discord.RichEmbed()
                 .setColor(scolor)
-                .addField(":white_check_mark: BON MOT DE PASSE :white_check_mark: ", "‏")
+                .addField(":white_check_mark: Le mot de passe a été validé :white_check_mark: ", "‏")
                 .setTimestamp()
                 .setFooter("VALIDE")
             message.author.createDM().then(channel => {
@@ -232,7 +232,7 @@ client.on("message", (message) => {
         var embed = new Discord.RichEmbed()
         .setAuthor(message.author.username, message.author.avatarURL)
         .setColor(pcolor)
-        .setThumbnail(`https://airkass.s-ul.eu/rfviVsl1`)
+        .setThumbnail(`https://airkass.fr/assets/logo.gif`)
         .addField(`${statsuser.user.username} a rejoint le:  `, statsuser.joinedAt)
         message.channel.send(embed);
 
@@ -303,29 +303,30 @@ function random(min, max) {
 client.on('message', message => {
     var i_embed = new Discord.RichEmbed()
     .setColor(ccolor)
-    .addField(":warning: **Ton langage** " + message.author.username + " :warning:", "‏")
-    .setTimestamp()
+    .addField(":warning: **Ton langage " + message.author.username + "** :warning:", "‏")
 
     var l_embed = new Discord.RichEmbed()
     .setColor(ccolor)
-    .addField(":warning: **Pas de lien** " + message.author.username + " :warning:", "‏")
-    .setTimestamp()
+    .addField(":warning: **Pas de lien " + message.author.username + "** :warning:", "‏")
+
 
     var pub_embed = new Discord.RichEmbed()
     .setColor(ccolor)
-    .addField(":warning: **Pas de pub** " + message.author.username + " :warning:", "‏")
-    .setTimestamp()
+    .addField(":warning: **Pas de pub " + message.author.username + "** :warning:", "‏")
 
     var link_embed = new Discord.RichEmbed()
     .setColor(ccolor)
-    .addField(":warning: **Pas de lien ici** " + message.author.username + " :warning:", "‏")
-    .setTimestamp()
+    .addField(":warning: **Pas de lien ici " + message.author.username + "** :warning:", "‏")
 
 //ANTI LIENS SALON
-    if (message.channel.id === "451737018272055299") {
+    if (message.channel.id === "485060836927340549") {
         if(message.content.toLowerCase().includes('https://')){
             message.delete(message.author);
             message.channel.send(link_embed)
+            .then(message => {
+                message.delete(5000)
+              })
+              .catch
         }
     }
     
@@ -334,7 +335,7 @@ client.on('message', message => {
         message.delete(message.author);
         message.channel.send(i_embed)
         .then(message => {
-            message.delete(10000)
+            message.delete(5000)
           })
           .catch
     }
@@ -343,7 +344,7 @@ client.on('message', message => {
         message.delete(message.author);
         message.channel.send(i_embed)
         .then(message => {
-            message.delete(10000)
+            message.delete(5000)
           })
           .catch
     }
@@ -352,7 +353,7 @@ client.on('message', message => {
         message.delete(message.author);
         message.channel.send(i_embed)
         .then(message => {
-            message.delete(10000)
+            message.delete(5000)
           })
           .catch
     }
@@ -361,7 +362,7 @@ client.on('message', message => {
         message.delete(message.author);
         message.channel.send(i_embed)
         .then(message => {
-            message.delete(10000)
+            message.delete(5000)
           })
           .catch
     }
@@ -370,7 +371,7 @@ client.on('message', message => {
         message.delete(message.author);
         message.channel.send(i_embed)
         .then(message => {
-            message.delete(10000)
+            message.delete(5000)
           })
           .catch
     }
@@ -379,7 +380,7 @@ client.on('message', message => {
         message.delete(message.author);
         message.channel.send(i_embed)
         .then(message => {
-            message.delete(10000)
+            message.delete(5000)
           })
           .catch
     }
@@ -388,7 +389,7 @@ client.on('message', message => {
         message.delete(message.author);
         message.channel.send(i_embed)
         .then(message => {
-            message.delete(10000)
+            message.delete(5000)
           })
           .catch
     }
@@ -397,7 +398,7 @@ client.on('message', message => {
         message.delete(message.author);
         message.channel.send(pub_embed)
         .then(message => {
-            message.delete(10000)
+            message.delete(5000)
           })
           .catch
     }
@@ -406,7 +407,7 @@ client.on('message', message => {
         message.delete(message.author);
         message.channel.send(pub_embed)
         .then(message => {
-            message.delete(10000)
+            message.delete(5000)
           })
           .catch
     }
@@ -415,7 +416,7 @@ client.on('message', message => {
         message.delete(message.author);
         message.channel.send(pub_embed)
         .then(message => {
-            message.delete(10000)
+            message.delete(5000)
           })
           .catch
     }
@@ -432,13 +433,13 @@ client.on('message', message => {
     let args = cont.slice(1);
 
     if (msg.startsWith(prefix + 'PURGE')) {
-        console.log("[PURGE] " + message.author.username + " viens d'utiliser la cmd purge");
         async function purge() {
             message.delete();
 
             if (!message.member.roles.find("name", "💥 Serveur-Admin")) { 
-                message.channel.send(':x: Tu as besoin du role \`💥 Serveur-Admin\` pour faire cette commande :x:');
-                return; 
+                message.channel.send(":x: Tu n'as pas la permission d'executer cette commande :x:");
+                return;
+                 
             }
 
             if (isNaN(args[0])) {
@@ -449,7 +450,7 @@ client.on('message', message => {
             const fetched = await message.channel.fetchMessages({limit: args[0]}); 
 
             message.channel.bulkDelete(fetched)
-                .catch(error => message.channel.send(`:x: Erreur: ${error}`));
+                .catch(error => message.channel.send(`:x: Erreur: ${error} :x:`));
 
         }
 
@@ -485,7 +486,7 @@ client.on("message", (message) => {
         var embeddel = new Discord.RichEmbed()
          .setColor(ccolor)
          .setAuthor(message.author.username, message.author.avatarURL)
-         .addField("Vous avez été retiré du role 🖥️ PC", "‏‏‏")
+         .addField("Vous avez été retiré du role `🖥️ PC`", "‏‏‏")
          .setTimestamp()
          message.author.createDM().then(channel => {
             return channel.send(embeddel);  
@@ -497,7 +498,7 @@ client.on("message", (message) => {
         var embedadd = new Discord.RichEmbed()
           .setColor(scolor)
           .setAuthor(message.author.username, message.author.avatarURL)
-          .addField("Vous avez été ajouté au rôle 🖥️ PC", "‏‏‏")
+          .addField("Vous avez été ajouté au rôle `🖥️ PC`", "‏‏‏")
           .setTimestamp()
              message.author.createDM().then(channel => {
                 return channel.send(embedadd);  
@@ -511,7 +512,7 @@ client.on("message", (message) => {
         var embeddel = new Discord.RichEmbed()
          .setColor(ccolor)
          .setAuthor(message.author.username, message.author.avatarURL)
-         .addField("Vous avez été retiré du role 🎮 PS4", "‏‏‏")
+         .addField("Vous avez été retiré du role `🎮 PS4`", "‏‏‏")
          .setTimestamp()
          message.author.createDM().then(channel => {
             return channel.send(embeddel);  
@@ -523,7 +524,7 @@ client.on("message", (message) => {
         var embedadd = new Discord.RichEmbed()
           .setColor(scolor)
           .setAuthor(message.author.username, message.author.avatarURL)
-          .addField("Vous avez été ajouté au rôle 🎮 PS4", "‏‏‏")
+          .addField("Vous avez été ajouté au rôle `🎮 PS4`", "‏‏‏")
           .setTimestamp()
              message.author.createDM().then(channel => {
                 return channel.send(embedadd);  
@@ -537,7 +538,7 @@ client.on("message", (message) => {
         var embeddel = new Discord.RichEmbed()
          .setColor(ccolor)
          .setAuthor(message.author.username, message.author.avatarURL)
-         .addField("Vous avez été retiré du role 💚 XBOX", "‏‏‏")
+         .addField("Vous avez été retiré du role `💚 XBOX`", "‏‏‏")
          .setTimestamp()
          message.author.createDM().then(channel => {
             return channel.send(embeddel);  
@@ -549,7 +550,7 @@ client.on("message", (message) => {
         var embedadd = new Discord.RichEmbed()
           .setColor(scolor)
           .setAuthor(message.author.username, message.author.avatarURL)
-          .addField("Vous avez été ajouté au rôle 💚 XBOX", "‏‏‏")
+          .addField("Vous avez été ajouté au rôle `💚 XBOX`", "‏‏‏")
           .setTimestamp()
              message.author.createDM().then(channel => {
                 return channel.send(embedadd);  
@@ -563,7 +564,7 @@ client.on("message", (message) => {
         var embeddel = new Discord.RichEmbed()
          .setColor(ccolor)
          .setAuthor(message.author.username, message.author.avatarURL)
-         .addField("Vous avez été retiré du role 🕹️ Switch", "‏‏‏")
+         .addField("Vous avez été retiré du role `🕹️ Switch`", "‏‏‏")
          .setTimestamp()
          message.author.createDM().then(channel => {
             return channel.send(embeddel);  
@@ -575,7 +576,7 @@ client.on("message", (message) => {
         var embedadd = new Discord.RichEmbed()
           .setColor(scolor)
           .setAuthor(message.author.username, message.author.avatarURL)
-          .addField("Vous avez été ajouté au rôle 🕹️ Switch", "‏‏‏")
+          .addField("Vous avez été ajouté au rôle `🕹️ Switch`", "‏‏‏")
           .setTimestamp()
              message.author.createDM().then(channel => {
                 return channel.send(embedadd);  
