@@ -399,20 +399,5 @@ client.on('message', message => {
     }
 });
 
-
-
-
-client.on("message", (message) => {
-    if (message.content === prefix + "cmd"){
-        message.reply(":x: COMMANDE INVALIDE :x:")
-        .then(message => {
-            message.delete(10000)
-          })
-          .catch
-    }
-}
-
-});
-
 client.login(token)
   
