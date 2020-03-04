@@ -61,66 +61,6 @@ client.user.setStatus('Online')
 client.user.setGame(ProfilGame, ProfilStream);
 });
 
-// ⇉ STATS CHANNEL
-
-var serverStats = {
-    guildID: '485060836927340545',
-    memberCountID: '537328653755744266',
-}
-
-client.on('guildMemberAdd', member => {
-    if (member.guild.id !== serverStats.guildID) return;
-
-    client.channels.get(serverStats.memberCountID).setName(`▪ UTILISATEURS : ${member.guild.members.filter(m => !m.bot).size}`);
-
-});
-
-client.on('guildMemberRemove', member => {
-    if (member.guild.id !== serverStats.guildID) return;
-    client.channels.get(serverStats.memberCountID).setName(`▪ UTILISATEURS : ${member.guild.members.filter(m => !m.bot).size}`);
-    
-});
-
-
-// ⇉ MESSAGE DE BIENVENUE / MESSAGE PRIVE
-client.on('guildMemberAdd', member => {
-    console.log("[+] " + member.user.username + " viens d'arriver sur le discord");
-    var wel_embed = new Discord.RichEmbed()
-     .setColor(pcolor)
-     .setAuthor("Bienvenue sur le discord " + member.user.username + " " , member.user.avatarURL)
-     .setThumbnail("https://airkass.fr/assets/logo.gif")
-     .setDescription("Pour te connecter au discord, je te laisse rentrer le mot de passe dans `#🔒𝗖𝗢𝗡𝗡𝗘𝗖𝗧𝗜𝗢𝗡`.")
-     .setTimestamp()
-     .setFooter("Discord bot by AirKass#0472 - https://airkass.fr")
-    member.createDM().then(channel => {
-        return channel.send(wel_embed);  
-    }).catch(console.error)
-
-// ⇉ AUTO ROLE
-
-    let role = member.guild.roles.find("name", "❌ Non confirmé")
-    member.addRole(role)
-
-// ⇉ NOUVEAU MEMBRE SALON BIENVENUE
-    var cwel_embed = new Discord.RichEmbed()
-    .setColor(scolor)
-    .setAuthor(member.user.username + " viens de rejoindre le discord !", member.user.avatarURL)
-    .setTimestamp()
-    .setFooter("Nouveau membre")
-    member.guild.channels.get(cbienvenue).send(cwel_embed);
-});
-
-// ⇉ MEMBRE PARTI SALON BIENVENUE
-client.on('guildMemberRemove', member => {
-    console.log("[-] " + member.user.username + " viens de partir du discord !");
-    var cbye_embed = new Discord.RichEmbed()
-    .setColor(ccolor)
-    .setAuthor(member.user.username + " est parti du discord !", member.user.avatarURL)
-    .setTimestamp()
-    .setFooter("Membre parti")
-    member.guild.channels.get(cbienvenue).send(cbye_embed);
-
-});
 // ⇉ MUTE / UNMUTE
 client.on("message", (message) => {
     if(message.content.startsWith(prefix + "mute")) {
@@ -247,7 +187,7 @@ client.on('message', message => {
         random();
 
         if (randnum == 0){
-            message.reply("Hey, je suis un bot !");
+            message.reply("Messieurs, bienvenue dans votre atelier..");
         }
 
         if (randnum == 1){
@@ -436,7 +376,7 @@ client.on('message', message => {
         async function purge() {
             message.delete();
 
-            if (!message.member.roles.find("name", "💥 Serveur-Admin")) { 
+            if (!message.member.roles.find("name", "superadmin")) { 
                 message.channel.send(":x: Tu n'as pas la permission d'executer cette commande :x:");
                 return;
                  
@@ -470,120 +410,6 @@ client.on("message", (message) => {
           })
           .catch
     }
-})
-
-// ⇉ COMMANDE ROLES (PC,XBOX..)
-client.on("message", (message) => {
-    if (message.channel.id === "485752708356243456") {
-        if (message.content !== ""){
-            message.delete();
-        }
-    }
-    if (message.content === "/pc"){
-        message.delete(message.author);
-        if (message.member.roles.find("name", "🖥️ PC")) { 
-        message.member.removeRole(message.guild.roles.find('name', '🖥️ PC'));
-        var embeddel = new Discord.RichEmbed()
-         .setColor(ccolor)
-         .setAuthor(message.author.username, message.author.avatarURL)
-         .addField("Vous avez été retiré du role `🖥️ PC`", "‏‏‏")
-         .setTimestamp()
-         message.author.createDM().then(channel => {
-            return channel.send(embeddel);  
-            }).catch(console.error)
-        }else{
-      message.member.addRoles(message.guild.roles.find('name', '🖥️ PC'))
-          .then(console.log)
-          .catch(console.error);
-        var embedadd = new Discord.RichEmbed()
-          .setColor(scolor)
-          .setAuthor(message.author.username, message.author.avatarURL)
-          .addField("Vous avez été ajouté au rôle `🖥️ PC`", "‏‏‏")
-          .setTimestamp()
-             message.author.createDM().then(channel => {
-                return channel.send(embedadd);  
-                }).catch(console.error)
-        }
-    }
-    if (message.content === "/ps4"){
-        message.delete(message.author);
-        if (message.member.roles.find("name", "🎮 PS4")) { 
-        message.member.removeRole(message.guild.roles.find('name', '🎮 PS4'));
-        var embeddel = new Discord.RichEmbed()
-         .setColor(ccolor)
-         .setAuthor(message.author.username, message.author.avatarURL)
-         .addField("Vous avez été retiré du role `🎮 PS4`", "‏‏‏")
-         .setTimestamp()
-         message.author.createDM().then(channel => {
-            return channel.send(embeddel);  
-            }).catch(console.error)
-        }else{
-      message.member.addRoles(message.guild.roles.find('name', '🎮 PS4'))
-          .then(console.log)
-          .catch(console.error);
-        var embedadd = new Discord.RichEmbed()
-          .setColor(scolor)
-          .setAuthor(message.author.username, message.author.avatarURL)
-          .addField("Vous avez été ajouté au rôle `🎮 PS4`", "‏‏‏")
-          .setTimestamp()
-             message.author.createDM().then(channel => {
-                return channel.send(embedadd);  
-                }).catch(console.error)
-        }
-    }
-    if (message.content === "/xbox"){
-        message.delete(message.author);
-        if (message.member.roles.find("name", "💚 XBOX")) { 
-        message.member.removeRole(message.guild.roles.find('name', '💚 XBOX'));
-        var embeddel = new Discord.RichEmbed()
-         .setColor(ccolor)
-         .setAuthor(message.author.username, message.author.avatarURL)
-         .addField("Vous avez été retiré du role `💚 XBOX`", "‏‏‏")
-         .setTimestamp()
-         message.author.createDM().then(channel => {
-            return channel.send(embeddel);  
-            }).catch(console.error)
-        }else{
-      message.member.addRoles(message.guild.roles.find('name', '💚 XBOX'))
-          .then(console.log)
-          .catch(console.error);
-        var embedadd = new Discord.RichEmbed()
-          .setColor(scolor)
-          .setAuthor(message.author.username, message.author.avatarURL)
-          .addField("Vous avez été ajouté au rôle `💚 XBOX`", "‏‏‏")
-          .setTimestamp()
-             message.author.createDM().then(channel => {
-                return channel.send(embedadd);  
-                }).catch(console.error)
-        }
-    }
-    if (message.content === "/switch"){
-        message.delete(message.author);
-        if (message.member.roles.find("name", "🕹️ Switch")) { 
-        message.member.removeRole(message.guild.roles.find('name', '🕹️ Switch'));
-        var embeddel = new Discord.RichEmbed()
-         .setColor(ccolor)
-         .setAuthor(message.author.username, message.author.avatarURL)
-         .addField("Vous avez été retiré du role `🕹️ Switch`", "‏‏‏")
-         .setTimestamp()
-         message.author.createDM().then(channel => {
-            return channel.send(embeddel);  
-            }).catch(console.error)
-        }else{
-      message.member.addRoles(message.guild.roles.find('name', '🕹️ Switch'))
-          .then(console.log)
-          .catch(console.error);
-        var embedadd = new Discord.RichEmbed()
-          .setColor(scolor)
-          .setAuthor(message.author.username, message.author.avatarURL)
-          .addField("Vous avez été ajouté au rôle `🕹️ Switch`", "‏‏‏")
-          .setTimestamp()
-             message.author.createDM().then(channel => {
-                return channel.send(embedadd);  
-                }).catch(console.error)
-        }
-    
-    
 }
 
 });
