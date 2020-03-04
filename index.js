@@ -376,7 +376,7 @@ client.on('message', message => {
         async function purge() {
             message.delete();
 
-            if (!message.member.roles.find("name", "💥 Serveur-Admin")) { 
+            if (!message.member.roles.find("name", "superadmin")) { 
                 message.channel.send(":x: Tu n'as pas la permission d'executer cette commande :x:");
                 return;
                  
