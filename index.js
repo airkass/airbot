@@ -376,7 +376,7 @@ client.on('message', message => {
         async function purge() {
             message.delete();
 
-            if (!message.member.roles.find("name", "superadmin")) { 
+            if (!message.member.roles.find("name", "💥 Serveur-Admin")) { 
                 message.channel.send(":x: Tu n'as pas la permission d'executer cette commande :x:");
                 return;
                  
@@ -396,7 +396,139 @@ client.on('message', message => {
 
         purge();
 
+    }
+});
+
+
+
+
+client.on("message", (message) => {
+    if (message.content === prefix + "cmd"){
+        message.reply(":x: COMMANDE INVALIDE :x:")
+        .then(message => {
+            message.delete(10000)
+          })
+          .catch
+    }
+})
+
+// ⇉ COMMANDE ROLES (PC,XBOX..)
+client.on("message", (message) => {
+    if (message.channel.id === "485752708356243456") {
+        if (message.content !== ""){
+            message.delete();
+        }
+    }
+    if (message.content === "/pc"){
+        message.delete(message.author);
+        if (message.member.roles.find("name", "🖥️ PC")) { 
+        message.member.removeRole(message.guild.roles.find('name', '🖥️ PC'));
+        var embeddel = new Discord.RichEmbed()
+         .setColor(ccolor)
+         .setAuthor(message.author.username, message.author.avatarURL)
+         .addField("Vous avez été retiré du role `🖥️ PC`", "‏‏‏")
+         .setTimestamp()
+         message.author.createDM().then(channel => {
+            return channel.send(embeddel);  
+            }).catch(console.error)
+        }else{
+      message.member.addRoles(message.guild.roles.find('name', '🖥️ PC'))
+          .then(console.log)
+          .catch(console.error);
+        var embedadd = new Discord.RichEmbed()
+          .setColor(scolor)
+          .setAuthor(message.author.username, message.author.avatarURL)
+          .addField("Vous avez été ajouté au rôle `🖥️ PC`", "‏‏‏")
+          .setTimestamp()
+             message.author.createDM().then(channel => {
+                return channel.send(embedadd);  
+                }).catch(console.error)
+        }
+    }
+    if (message.content === "/ps4"){
+        message.delete(message.author);
+        if (message.member.roles.find("name", "🎮 PS4")) { 
+        message.member.removeRole(message.guild.roles.find('name', '🎮 PS4'));
+        var embeddel = new Discord.RichEmbed()
+         .setColor(ccolor)
+         .setAuthor(message.author.username, message.author.avatarURL)
+         .addField("Vous avez été retiré du role `🎮 PS4`", "‏‏‏")
+         .setTimestamp()
+         message.author.createDM().then(channel => {
+            return channel.send(embeddel);  
+            }).catch(console.error)
+        }else{
+      message.member.addRoles(message.guild.roles.find('name', '🎮 PS4'))
+          .then(console.log)
+          .catch(console.error);
+        var embedadd = new Discord.RichEmbed()
+          .setColor(scolor)
+          .setAuthor(message.author.username, message.author.avatarURL)
+          .addField("Vous avez été ajouté au rôle `🎮 PS4`", "‏‏‏")
+          .setTimestamp()
+             message.author.createDM().then(channel => {
+                return channel.send(embedadd);  
+                }).catch(console.error)
+        }
+    }
+    if (message.content === "/xbox"){
+        message.delete(message.author);
+        if (message.member.roles.find("name", "💚 XBOX")) { 
+        message.member.removeRole(message.guild.roles.find('name', '💚 XBOX'));
+        var embeddel = new Discord.RichEmbed()
+         .setColor(ccolor)
+         .setAuthor(message.author.username, message.author.avatarURL)
+         .addField("Vous avez été retiré du role `💚 XBOX`", "‏‏‏")
+         .setTimestamp()
+         message.author.createDM().then(channel => {
+            return channel.send(embeddel);  
+            }).catch(console.error)
+        }else{
+      message.member.addRoles(message.guild.roles.find('name', '💚 XBOX'))
+          .then(console.log)
+          .catch(console.error);
+        var embedadd = new Discord.RichEmbed()
+          .setColor(scolor)
+          .setAuthor(message.author.username, message.author.avatarURL)
+          .addField("Vous avez été ajouté au rôle `💚 XBOX`", "‏‏‏")
+          .setTimestamp()
+             message.author.createDM().then(channel => {
+                return channel.send(embedadd);  
+                }).catch(console.error)
+        }
+    }
+    if (message.content === "/switch"){
+        message.delete(message.author);
+        if (message.member.roles.find("name", "🕹️ Switch")) { 
+        message.member.removeRole(message.guild.roles.find('name', '🕹️ Switch'));
+        var embeddel = new Discord.RichEmbed()
+         .setColor(ccolor)
+         .setAuthor(message.author.username, message.author.avatarURL)
+         .addField("Vous avez été retiré du role `🕹️ Switch`", "‏‏‏")
+         .setTimestamp()
+         message.author.createDM().then(channel => {
+            return channel.send(embeddel);  
+            }).catch(console.error)
+        }else{
+      message.member.addRoles(message.guild.roles.find('name', '🕹️ Switch'))
+          .then(console.log)
+          .catch(console.error);
+        var embedadd = new Discord.RichEmbed()
+          .setColor(scolor)
+          .setAuthor(message.author.username, message.author.avatarURL)
+          .addField("Vous avez été ajouté au rôle `🕹️ Switch`", "‏‏‏")
+          .setTimestamp()
+             message.author.createDM().then(channel => {
+                return channel.send(embedadd);  
+                }).catch(console.error)
+        }
+    
+    
 }
-	
+
+});
+
 client.login(token)
+  
+
   
