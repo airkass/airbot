@@ -396,8 +396,7 @@ client.on('message', message => {
 
         purge();
 
-    }
-});
-
+}
+	
 client.login(token)
   
