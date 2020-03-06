@@ -15,7 +15,7 @@ var cbienvenue = "486113472111968256"; // → ID DU SALON DE BIENVENUE
 var pcolor = "#FFFFFF"; // → COULEUR PRIMAIRE (embed...)
 var scolor = "#00B212"; // → COULEUR PRINCIPALEMENT VERT POUR TOUS LES SUCCES !
 var ccolor = "#E24343"; // → COULEUR PRINCIPALEMNT ROUGE POUR TOUS LES "CANCEL" !
-var ProfilGame = "en live fun mooc :)"; // → Le bot joue à ......
+var ProfilGame = "en live fun mooc"; // → Le bot joue à ......
 var ProfilStream = "https://twitch.tv/airkass"; // → Le bot stream du ......
 
 // ⇉ CONNECTION
@@ -61,6 +61,65 @@ client.user.setStatus('Online')
 client.user.setGame(ProfilGame, ProfilStream);
 });
 
+// ⇉ STATS CHANNEL
+
+var serverStats = {
+    guildID: '684478044681011247',
+    memberCountID: '685385714904465409',
+}
+
+client.on('guildMemberAdd', member => {
+    if (member.guild.id !== serverStats.guildID) return;
+
+    client.channels.get(serverStats.memberCountID).setName(`▪ UTILISATEURS : ${member.guild.members.filter(m => !m.bot).size}`);
+
+});
+
+client.on('guildMemberRemove', member => {
+    if (member.guild.id !== serverStats.guildID) return;
+    client.channels.get(serverStats.memberCountID).setName(`▪ UTILISATEURS : ${member.guild.members.filter(m => !m.bot).size}`);
+    
+});
+
+
+// ⇉ MESSAGE DE BIENVENUE / MESSAGE PRIVE
+client.on('guildMemberAdd', member => {
+    console.log("[+] " + member.user.username + " viens d'arriver sur le discord");
+    var wel_embed = new Discord.RichEmbed()
+     .setColor(pcolor)
+     .setAuthor("Bienvenue sur le discord " + member.user.username + " " , member.user.avatarURL)
+     .setThumbnail("https://airkass.fr/assets/logo.gif")
+     .setTimestamp()
+     .setFooter("Discord bot by AirKass#0472 - https://airkass.fr")
+    member.createDM().then(channel => {
+        return channel.send(wel_embed);  
+    }).catch(console.error)
+
+// ⇉ AUTO ROLE
+
+    let role = member.guild.roles.find("name", "🍹・Khey")
+    member.addRole(role)
+
+// ⇉ NOUVEAU MEMBRE SALON BIENVENUE
+    var cwel_embed = new Discord.RichEmbed()
+    .setColor(scolor)
+    .setAuthor(member.user.username + " viens de rejoindre le discord !", member.user.avatarURL)
+    .setTimestamp()
+    .setFooter("Nouveau membre")
+    member.guild.channels.get(cbienvenue).send(cwel_embed);
+});
+
+// ⇉ MEMBRE PARTI SALON BIENVENUE
+client.on('guildMemberRemove', member => {
+    console.log("[-] " + member.user.username + " viens de partir du discord !");
+    var cbye_embed = new Discord.RichEmbed()
+    .setColor(ccolor)
+    .setAuthor(member.user.username + " est parti du discord !", member.user.avatarURL)
+    .setTimestamp()
+    .setFooter("Membre parti")
+    member.guild.channels.get(cbienvenue).send(cbye_embed);
+
+});
 // ⇉ MUTE / UNMUTE
 client.on("message", (message) => {
     if(message.content.startsWith(prefix + "mute")) {
@@ -187,7 +246,7 @@ client.on('message', message => {
         random();
 
         if (randnum == 0){
-            message.reply("Messieurs, bienvenue dans votre atelier..");
+            message.reply("Hey, je suis un bot !");
         }
 
         if (randnum == 1){
@@ -271,61 +330,7 @@ client.on('message', message => {
     }
     
 // ANTI INSULTES
-    if(message.content.toLowerCase().includes('pute')){
-        message.delete(message.author);
-        message.channel.send(i_embed)
-        .then(message => {
-            message.delete(5000)
-          })
-          .catch
-    }
-
-    if(message.content.toLowerCase().includes('connard')){
-        message.delete(message.author);
-        message.channel.send(i_embed)
-        .then(message => {
-            message.delete(5000)
-          })
-          .catch
-    }
-
-    if(message.content.toLowerCase().includes('fdp')){
-        message.delete(message.author);
-        message.channel.send(i_embed)
-        .then(message => {
-            message.delete(5000)
-          })
-          .catch
-    }
-
-    if(message.content.toLowerCase().includes('enculé')){
-        message.delete(message.author);
-        message.channel.send(i_embed)
-        .then(message => {
-            message.delete(5000)
-          })
-          .catch
-    }
-
-    if(message.content.toLowerCase().includes('merde')){
-        message.delete(message.author);
-        message.channel.send(i_embed)
-        .then(message => {
-            message.delete(5000)
-          })
-          .catch
-    }
-
-    if(message.content.toLowerCase().includes('fils de pute')){
-        message.delete(message.author);
-        message.channel.send(i_embed)
-        .then(message => {
-            message.delete(5000)
-          })
-          .catch
-    }
-
-    if(message.content.toLowerCase().includes('batard')){
+    if(message.content.toLowerCase().includes('pute batard fils de pute merde enculé ntm')){
         message.delete(message.author);
         message.channel.send(i_embed)
         .then(message => {
@@ -529,6 +534,4 @@ client.on("message", (message) => {
 });
 
 client.login(token)
-  
-
   
